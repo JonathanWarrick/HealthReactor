@@ -1,0 +1,11 @@
+{
+  "name": "health-reactor",
+  "version": "0.0.1",
+  "description": "MVP for Health Reactor",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.2.21",
+    "angular-ui-router": "^0.2.10",
+    "express": "^4.8.5"
+  }
+}
