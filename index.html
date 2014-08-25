@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="wellness">
   <head>
   	<meta charset="utf-8">
   	<title>Health Reactor - Wellness Initiative</title>
   	<link href="public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+  	<script src="public/js/Controllers/WellnessController.js"></script>
   </head>
 
-  <body>
+  <body ng-controller="WellnessController">
   	<h1>This is the beginning.</h1>
+  	<!-- <div ng-view> -->
+  		<h1>{{test}}</h1>
+  	<!-- </div> -->
   </body>
 
 
