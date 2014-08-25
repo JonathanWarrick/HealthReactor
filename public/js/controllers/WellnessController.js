@@ -26,6 +26,5 @@ angular.module('wellness', [
 })
 
 .controller('WellnessController', function($scope) {
-	$scope.test = "This is an angular test.";
 });
 
