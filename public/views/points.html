@@ -1,0 +1,9 @@
+<h1>Inside Points</h1>
+
+<div id="initiativeContainer" class="row-fluid" ng-repeat="initiative in wellnessInitiatives">
+	<div class="span6">{{initiative.name}}</div>
+	<div class="span3">{{initiative.counterType}}</div>
+	<div class="span2">{{initiative.total()}}</div>
+</div>
+<button ng-submit="calculateTotalPoints()">Click to Refresh Points</button>
+<div class="span10">{{totalPoints}}</div>
