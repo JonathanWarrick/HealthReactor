@@ -2,8 +2,10 @@
 
 <div id="initiativeContainer" class="row-fluid" ng-repeat="initiative in wellnessInitiatives">
 	<div class="span6">{{initiative.name}}</div>
-	<div class="span3">{{initiative.counterType}}</div>
+	<div counter value="initiative.quantity" min="0" class="span3 counter"></div>
 	<div class="span2">{{initiative.total()}}</div>
 </div>
-<button ng-submit="calculateTotalPoints()">Click to Refresh Points</button>
-<div class="span10">{{totalPoints}}</div>
+
+<button ng-click="calculateTotalPoints()">Click to Refresh Points</button>
+
+<div class="span2">{{totalPoints}}</div>

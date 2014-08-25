@@ -11,9 +11,24 @@
   </head>
 
   <body ng-controller="WellnessController">
-  	<h1>This is the beginning.</h1>
-  	<h1>{{test}}</h1>
-  	<a href="#/points">points</a>
+  	<div class="page-header">
+  		<h1>Health Reactor</h1>
+  		<div class="navbar">
+  			<div class="navbar-inner">
+		  		<ul class="nav">
+		  			<li>
+		  				<a href="#/points">Points</a>
+						</li>
+						<li>
+		  				<a href="#/calendar">Calendar</a>
+						</li>
+						<li>
+		  				<a href="#/leaderboard">Leaderboard</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
   	<div ui-view>
   	</div>
   </body>
