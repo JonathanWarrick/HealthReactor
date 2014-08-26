@@ -1,6 +1,6 @@
 angular.module('wellness.points', [])
 
-.controller('PointsController', function($scope, Initiatives) {
+.controller('PointsController', function($scope, $http, Initiatives) {
 	$scope.wellnessInitiatives = Initiatives.wellnessInitiatives;
 	$scope.totalPoints = 0;
 	$scope.calculateTotalPoints = function() {
@@ -9,6 +9,14 @@ angular.module('wellness.points', [])
 			points += initiative.total();
 		});
 		$scope.totalPoints = points;
+    $http({
+      method: 'POST',
+      url: 'api/submitPoints',
+      data: {
+        username: 'testUser',
+        points: $scope.totalPoints
+      }
+    });
 	};
 })
 

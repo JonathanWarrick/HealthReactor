@@ -1,5 +1,6 @@
 // Require modules to use with requestHandler
 var User = require('./user.js');
+var Submission = require('./initiativeSubmission.js');
 
 // Create empty requestHandler object to be extended and later sent for requests
 var requestHandler = {};
@@ -31,6 +32,22 @@ requestHandler.login = function(request, response) {
 			console.log('user not found');
 			return false;
 		}
+	});
+};
+
+requestHandler.submitPoints = function(request, response) {
+	console.log('submit points called');
+	var username = request.body.username;
+	var points = request.body.points;
+	var newSubmission = new Submission({
+		username: username,
+		points: points
+	});
+	newSubmission.save(function(err, submission) {
+		if (err) {
+			console.error(err);
+		}
+		console.log('submission saved');
 	});
 };
 

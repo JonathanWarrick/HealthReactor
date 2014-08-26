@@ -37,6 +37,11 @@ app.post('/api/login', function(request, response) {
 	requestHandler.login(request, response);
 });
 
+// Handle request for daily points submission
+app.post('/api/submitPoints', function(request, response) {
+	requestHandler.submitPoints(request, response);
+});
+
 // Open connection to server
 app.listen(port);
 console.log("Now listening on:", port);
