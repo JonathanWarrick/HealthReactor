@@ -1,3 +1,19 @@
+<div>
+	<h3>Choose a Date:</h3>
+	<div>
+	<select ng-model="myDate" ng-options="date.name for date in dates">
+	  <option>Choose Date</option>
+	  <option value ="">{{date.name}}</option>
+	</select>
+	</div>
+
+	<button type="button" class="btn btn-primary btn-lg" id="getSpecDate" ng-click="getDate()">Get Your Points!</button>
+
+	</br>
+	</br>
+	</br>
+</div>
+
 <div class="container-fluid" id="initiativeContainer">
 	<div class="row" id="initiatives" ng-repeat="initiative in wellnessInitiatives">
 		<div class="col-md-4 initiativeName">{{initiative.description}}</div>

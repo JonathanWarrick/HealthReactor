@@ -2,6 +2,10 @@
 	display: none;
 }
 
+#getSpecDate {
+  float: left;
+}
+
 #initiatives div, #totalRow div {
   display: inline-block;
   margin: 10px;

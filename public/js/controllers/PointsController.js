@@ -1,6 +1,6 @@
 angular.module('wellness.points', [])
 
-.controller('PointsController', function($scope, $http, Initiatives) {
+.controller('PointsController', function($scope, $http, Initiatives, Datepicker) {
 	$scope.wellnessInitiatives = Initiatives.wellnessInitiatives;
   
   $scope.waterPoints = $scope.wellnessInitiatives[0];
@@ -34,6 +34,23 @@ angular.module('wellness.points', [])
       data: submissionInformation
     });
 	};
+
+  $scope.dates = [
+    {name: "Sun Aug 24 2014"},
+    {name: "Mon Aug 25 2014"},
+    {name: "Tue Aug 26 2014"},
+    {name: "Wed Aug 27 2014"},
+    {name: "Thu Aug 28 2014"},
+    {name: "Fri Aug 29 2014"},
+    {name: "Sat Aug 30 2014"}
+  ];
+
+  $scope.myDate = $scope.dates[0];
+
+  $scope.getDate = function() {
+    console.log('get date called using myDate', $scope.myDate);
+    Datepicker.getDate($scope.myDate)
+  }
 })
 
 .factory('Initiatives', function() {
@@ -41,6 +58,23 @@ angular.module('wellness.points', [])
 	return {
 		wellnessInitiatives: wellnessInitiatives
 	}
+})
+
+.factory('Datepicker', function($http) {
+  var getDate = function(date) {
+    return $http({
+      method: 'POST', 
+      url: 'api/dateScores',
+      data: date
+    })
+    .success(function(response) {
+      console.log('here are the results', response);
+      return response;
+    });
+  };
+  return {
+    getDate: getDate
+  };
 })
 
 .directive('counter', function() {
