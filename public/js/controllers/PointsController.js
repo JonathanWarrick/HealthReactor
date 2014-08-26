@@ -13,7 +13,7 @@ angular.module('wellness.points', [])
       method: 'POST',
       url: 'api/submitPoints',
       data: {
-        username: 'testUser',
+        username: 'testUser4',
         points: $scope.totalPoints
       }
     });

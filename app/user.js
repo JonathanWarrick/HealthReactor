@@ -7,6 +7,7 @@ var UserSchema = new mongoose.Schema({
   timestamp: {type: Date, default: Date.now}
 });
 
+
 // define user model (mongoose models are equivalent of collections, so users file is irrelevant)
 var User = mongoose.model('User', UserSchema);
 

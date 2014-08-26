@@ -57,6 +57,19 @@ requestHandler.submitPoints = function(request, response) {
 	});
 };
 
+requestHandler.createLeaderboard = function(request, response) {
+	console.log('createLeaderboard called in request handlers');
+	var users = Submission.find(function(err, submissions) {
+		if (err) {
+			console.error(err);
+		}
+		if(submissions) {
+			console.log(submissions);
+		}
+		response.send(200, submissions);
+	});
+};
+
 // Create new sessions upon successful user log-in
 // requestHandler.createSession = function(request, response, user) {
 // 	console.log(request.session);

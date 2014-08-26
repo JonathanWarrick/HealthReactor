@@ -2,7 +2,8 @@ angular.module('wellness', [
 	'ui.router', 
 	'wellness.points',
 	'wellness.login', 
-	'wellness.signup'
+	'wellness.signup',
+	'wellness.leaderboard'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -21,6 +22,11 @@ angular.module('wellness', [
 	  	url: "/signup",
 	  	templateUrl: '/views/signup.html',
 	  	controller: "SignUpController"
+	  })
+	 .state('leaderboard', {
+	  	url: "/leaderboard",
+	  	templateUrl: '/views/leaderboard.html',
+	  	controller: "LeaderboardController"
 	  });
 	$urlRouterProvider.otherwise("/");
 })
