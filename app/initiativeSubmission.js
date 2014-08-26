@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // create the user schema for new users
 var SubmissionSchema = new mongoose.Schema({
-  username: { type: String, required: true, index: { unique: true } },
+  username: { type: String, required: true },
   points: { type: Number, required: true },
   timestamp: {type: Date, default: Date.now}
 });
