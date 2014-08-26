@@ -32,6 +32,11 @@ app.post('/api/signup', function(request, response) {
 	requestHandler.signup(request, response);
 });
 
+// Handle request for existing user to log-in
+app.post('/api/login', function(request, response) {
+	requestHandler.login(request, response);
+});
+
 // Open connection to server
 app.listen(port);
 console.log("Now listening on:", port);
