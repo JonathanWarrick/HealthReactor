@@ -3,7 +3,8 @@ angular.module('wellness', [
 	'wellness.points',
 	'wellness.login', 
 	'wellness.signup',
-	'wellness.leaderboard'
+	'wellness.leaderboard',
+	'wellness.calendar'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -27,6 +28,11 @@ angular.module('wellness', [
 	  	url: "/leaderboard",
 	  	templateUrl: '/views/leaderboard.html',
 	  	controller: "LeaderboardController"
+	  })
+	 .state('calendar', {
+	  	url: "/calendar",
+	  	templateUrl: '/views/calendar.html',
+	  	controller: "CalendarController"
 	  });
 	$urlRouterProvider.otherwise("/");
 })

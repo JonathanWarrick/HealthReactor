@@ -2,6 +2,7 @@ angular.module('wellness.leaderboard', [])
 
 .controller('LeaderboardController', function($scope, Leaderboard) {
 	$scope.createLeaderboard = function() {
+		$scope.counter = 0;
 		Leaderboard.createLeaderboard()
 	  .then(function(response) {
 	  	$scope.leaderboard = response.data;

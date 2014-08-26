@@ -1,5 +1,17 @@
 <h1>Leaderboard</h1>
 <button ng-click="createLeaderboard()">click</button>
-<ul ng-repeat="leader in leaderboard">
-	<li>{{leader.username}}: {{leader.points}}</li>
-</ul>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Position</th>
+			<th>Username</th>
+			<th>Total Score</th>
+		</tr>
+	</thead>
+
+	<tr ng-repeat="leader in leaderboard">
+		<td>{{counter}}</td>
+		<td>{{leader.username}}</td>
+		<td>{{leader.points}}</td>
+	</tr>
+</table>
