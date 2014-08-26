@@ -1,13 +1,15 @@
 <div class="container-fluid" id="initiativeContainer">
 	<div class="row" id="initiatives" ng-repeat="initiative in wellnessInitiatives">
-		<div class="col-md-6">{{initiative.name}}</div>
+		<div class="col-md-6 initiativeName">{{initiative.name}}</div>
 		<div counter value="initiative.quantity" min="0" class="col-md-3 counter"></div>
-		<div class="col-md-2">{{initiative.total()}}</div>
+		<div class="col-md-2 initiativeTotal">{{initiative.total()}}</div>
 	</div>
 
-	<div class="row" id="initiativeTotal">
-		<div class="col-md-6"></div>
-		<button class="col-md-3" ng-click="calculateTotalPoints()">Click to Refresh Total</button>
-		<div class="col-md-2">{{totalPoints}}</div>
+	<div class="row" id="totalRow">
+		<div class="col-md-6" id="hidethis"></div>
+		<div class="col-md-3">
+		  <button type="button" class="btn btn-primary btn-lg" ng-click="calculateTotalPoints()">Click to Refresh Total</button>
+		</div>
+		<div class="col-md-2" id="initiativeTotal">{{totalPoints}}</div>
 	</div>
 </div>
