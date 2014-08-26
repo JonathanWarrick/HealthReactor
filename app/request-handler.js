@@ -90,7 +90,7 @@ requestHandler.getPoints = function(request, response) {
 	console.log('request.body', request.body);
 	console.log('date', date);
 
-	Submission.find({date: date, username: 'demoUser'}, function(err, results) {
+	Submission.find({date: date, username: 'testPerson'}, function(err, results) {
 		if (err) {
 			console.error(err);
 		}

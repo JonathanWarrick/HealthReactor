@@ -35,6 +35,7 @@ angular.module('wellness.points', [])
     });
 	};
 
+
   $scope.dates = [
     {name: "Sun Aug 24 2014"},
     {name: "Mon Aug 25 2014"},
@@ -42,14 +43,38 @@ angular.module('wellness.points', [])
     {name: "Wed Aug 27 2014"},
     {name: "Thu Aug 28 2014"},
     {name: "Fri Aug 29 2014"},
-    {name: "Sat Aug 30 2014"}
+    {name: "Sat Aug 30 2014"},
+    {name: "Sun Aug 31 2014"}
   ];
 
   $scope.myDate = $scope.dates[0];
+  
+  $scope.now = new Date(Date.now()).toDateString();
+  $scope.today = {
+    name: $scope.now
+  };
+
+  $scope.getDateOnPageLoad = function() {
+    console.log('called getDate on page initialization');
+    Datepicker.getDate($scope.today);
+  }
 
   $scope.getDate = function() {
     console.log('get date called using myDate', $scope.myDate);
     Datepicker.getDate($scope.myDate)
+    .then(function(response) {
+      console.log(response.data[0].waterPoints);
+      if(response.data.length !== 0) {
+        $scope.waterPoints.currentValue = response.data[0]['waterPoints'];
+        $scope.waterPoints.total();
+        console.log($scope.waterPoints.currentValue);
+      // stairsPoints: $scope.stairsPoints.currentValue,
+      // yogaPoints: $scope.yogaPoints.currentValue,
+      // workoutPoints: $scope.workoutPoints.currentValue,
+      // walkPoints: $scope.walkPoints.currentValue,
+      // meditatePoints: $scope.meditatePoints.currentValue,
+      }
+    });
   }
 })
 
@@ -196,3 +221,4 @@ var wellnessInitiativesArray = [
   walkInitiative,
   meditateInitiative
 ];
+
