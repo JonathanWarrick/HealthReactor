@@ -8,7 +8,7 @@ angular.module('wellness.leaderboard', [])
 	  	$scope.leaderboard = leaderboard.data;
 	  	$scope.leaderboard2 = Leaderboard.populateLeaderboard($scope.leaderboard);
 			$scope.leaderboard2.sort(function(a, b) {
-				return b.points - a.points;
+				return b.totalPoints - a.totalPoints;
 			});
 			for (var i = 0; i < $scope.leaderboard2.length; i++) {
 				$scope.leaderboard2[i].counter = i + 1;
@@ -34,11 +34,11 @@ angular.module('wellness.leaderboard', [])
 		var tempLeaderboard = {};
 		leaderboard.forEach(function(record) {
 			var user = record.username;
-			var points = record.points;
+			var totalPoints = record.totalPoints;
 			if (tempLeaderboard[user]) {
-				tempLeaderboard[user] += points;
+				tempLeaderboard[user] += totalPoints;
 			} else {
-				tempLeaderboard[user] = points;
+				tempLeaderboard[user] = totalPoints;
 			}
 		});
 		console.log('templeaders', tempLeaderboard);
@@ -47,7 +47,7 @@ angular.module('wellness.leaderboard', [])
 			// console.log(key);
 			newLeaderboard.push({
 				username: key,
-				points: tempLeaderboard[key]
+				totalPoints: tempLeaderboard[key]
 			});
 		}
 		console.log('newleaders', newLeaderboard);

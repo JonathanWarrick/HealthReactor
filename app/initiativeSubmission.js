@@ -4,12 +4,12 @@ var mongoose = require('mongoose');
 // create the submission schema for new submissions
 var SubmissionSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  waterPoints: { type: Number, required: true },
-  stairsPoints: { type: Number, required: true },
-  yogaPoints: { type: Number, required: true },
-  workoutPoints: { type: Number, required: true },
-  walkPoints: { type: Number, required: true },
-  meditatePoints: { type: Number, required: true },
+  waterQuantity: { type: Number, required: true },
+  stairsQuantity: { type: Number, required: true },
+  yogaQuantity: { type: Number, required: true },
+  workoutQuantity: { type: Number, required: true },
+  walkQuantity: { type: Number, required: true },
+  meditateQuantity: { type: Number, required: true },
   totalPoints: { type: Number, required: true },
   timestamp: {type: Date, default: Date.now},
   date: { type: String }

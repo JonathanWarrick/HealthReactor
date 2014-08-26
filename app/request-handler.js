@@ -44,22 +44,22 @@ requestHandler.login = function(request, response) {
 requestHandler.submitPoints = function(request, response) {
 	console.log('submit points called');
 	var username = request.body.username;
-	var waterPoints = request.body.waterPoints;
-	var stairsPoints = request.body.stairsPoints;
-	var yogaPoints = request.body.yogaPoints;
-	var workoutPoints = request.body.workoutPoints;
-	var walkPoints = request.body.walkPoints;
-	var meditatePoints = request.body.meditatePoints;
+	var waterQuantity = request.body.waterQuantity;
+	var stairsQuantity = request.body.stairsQuantity;
+	var yogaQuantity = request.body.yogaQuantity;
+	var workoutQuantity = request.body.workoutQuantity;
+	var walkQuantity = request.body.walkQuantity;
+	var meditateQuantity = request.body.meditateQuantity;
 	var totalPoints = request.body.totalPoints;
 	
 	var newSubmission = new Submission({
 		username: username,
-		waterPoints: waterPoints,
-		stairsPoints: stairsPoints,
-		yogaPoints: yogaPoints,
-		workoutPoints: workoutPoints,
-		walkPoints: walkPoints,
-		meditatePoints: meditatePoints,
+		waterQuantity: waterQuantity,
+		stairsQuantity: stairsQuantity,
+		yogaQuantity: yogaQuantity,
+		workoutQuantity: workoutQuantity,
+		walkQuantity: walkQuantity,
+		meditateQuantity: meditateQuantity,
 		totalPoints: totalPoints
 	});
 	
@@ -90,7 +90,7 @@ requestHandler.getPoints = function(request, response) {
 	console.log('request.body', request.body);
 	console.log('date', date);
 
-	Submission.find({date: date, username: 'testPerson'}, function(err, results) {
+	Submission.find({date: date, username: 'testDemoPerson'}, function(err, results) {
 		if (err) {
 			console.error(err);
 		}

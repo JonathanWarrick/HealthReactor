@@ -3,12 +3,12 @@ angular.module('wellness.points', [])
 .controller('PointsController', function($scope, $http, Initiatives, Datepicker) {
 	$scope.wellnessInitiatives = Initiatives.wellnessInitiatives;
   
-  $scope.waterPoints = $scope.wellnessInitiatives[0];
-  $scope.stairsPoints = $scope.wellnessInitiatives[1];
-  $scope.yogaPoints = $scope.wellnessInitiatives[2];
-  $scope.workoutPoints = $scope.wellnessInitiatives[3];
-  $scope.walkPoints = $scope.wellnessInitiatives[4];
-  $scope.meditatePoints = $scope.wellnessInitiatives[5];
+  $scope.waterQuantity = $scope.wellnessInitiatives[0].quantity;
+  $scope.stairsQuantity = $scope.wellnessInitiatives[1].quantity;
+  $scope.yogaQuantity = $scope.wellnessInitiatives[2].quantity;
+  $scope.workoutQuantity = $scope.wellnessInitiatives[3].quantity;
+  $scope.walkQuantity = $scope.wellnessInitiatives[4].quantity;
+  $scope.meditateQuantity = $scope.wellnessInitiatives[5].quantity;
 	
   $scope.calculateTotalPoints = function() {
 		var points = 0;
@@ -19,12 +19,12 @@ angular.module('wellness.points', [])
 		$scope.totalPoints = points;
     var submissionInformation = {
       username: 'testUser6',
-      waterPoints: $scope.waterPoints.currentValue,
-      stairsPoints: $scope.stairsPoints.currentValue,
-      yogaPoints: $scope.yogaPoints.currentValue,
-      workoutPoints: $scope.workoutPoints.currentValue,
-      walkPoints: $scope.walkPoints.currentValue,
-      meditatePoints: $scope.meditatePoints.currentValue,
+      waterQuantity: $scope.waterQuantity,
+      stairsQuantity: $scope.stairsQuantity,
+      yogaQuantity: $scope.yogaQuantity,
+      workoutQuantity: $scope.workoutQuantity,
+      walkQuantity: $scope.walkQuantity,
+      meditateQuantity: $scope.meditateQuantity,
       totalPoints: $scope.totalPoints
     };
     console.log(submissionInformation)
@@ -34,7 +34,6 @@ angular.module('wellness.points', [])
       data: submissionInformation
     });
 	};
-
 
   $scope.dates = [
     {name: "Sun Aug 24 2014"},
@@ -56,23 +55,36 @@ angular.module('wellness.points', [])
 
   $scope.getDateOnPageLoad = function() {
     console.log('called getDate on page initialization');
-    Datepicker.getDate($scope.today);
+    Datepicker.getDate($scope.today)
+    .then(function(response) {
+      if(response.data.length !== 0) {
+        $scope.wellnessInitiatives[0].quantity = response.data[0]['waterQuantity'];
+        $scope.wellnessInitiatives[1].quantity = response.data[0]['stairsQuantity'];
+        $scope.wellnessInitiatives[2].quantity = response.data[0]['yogaQuantity'];
+        $scope.wellnessInitiatives[3].quantity = response.data[0]['workoutQuantity'];
+        $scope.wellnessInitiatives[4].quantity = response.data[0]['walkQuantity'];
+        $scope.wellnessInitiatives[5].quantity = response.data[0]['meditateQuantity'];
+        console.log('done changing shit');
+      }
+    });
   }
 
   $scope.getDate = function() {
     console.log('get date called using myDate', $scope.myDate);
     Datepicker.getDate($scope.myDate)
     .then(function(response) {
-      console.log(response.data[0].waterPoints);
       if(response.data.length !== 0) {
-        $scope.waterPoints.currentValue = response.data[0]['waterPoints'];
-        $scope.waterPoints.total();
-        console.log($scope.waterPoints.currentValue);
-      // stairsPoints: $scope.stairsPoints.currentValue,
-      // yogaPoints: $scope.yogaPoints.currentValue,
-      // workoutPoints: $scope.workoutPoints.currentValue,
-      // walkPoints: $scope.walkPoints.currentValue,
-      // meditatePoints: $scope.meditatePoints.currentValue,
+        $scope.wellnessInitiatives[0].quantity = response.data[0]['waterQuantity'];
+        $scope.wellnessInitiatives[1].quantity = response.data[0]['stairsQuantity'];
+        $scope.wellnessInitiatives[2].quantity = response.data[0]['yogaQuantity'];
+        $scope.wellnessInitiatives[3].quantity = response.data[0]['workoutQuantity'];
+        $scope.wellnessInitiatives[4].quantity = response.data[0]['walkQuantity'];
+        $scope.wellnessInitiatives[5].quantity = response.data[0]['meditateQuantity'];
+        console.log('done changing shit');
+      } else {
+        $scope.wellnessInitiatives.forEach(function(initiative) {
+          initiative.quantity = 0;
+        });
       }
     });
   }
