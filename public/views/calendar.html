@@ -1,1 +1,26 @@
-<quick-datepicker ng-model='myDate'></quick-datepicker>
+<h1>Choose a Date:</h1>
+  <div>
+    <select ng-model="myDate" ng-options="date.name for date in dates">
+      <option>Choose Date</option>
+      <option value ="">{{date.name}}</option>
+    </select>
+  </div>
+
+
+  <button type="button" class="btn btn-primary btn-lg" ng-click="logDate()">Get Your Points!</button>
+<!-- 
+
+
+    <select ng-model="myDate" ng-options="date.date for date in dates"ng-repeat="date in dates">
+      <option value="">-- choose date --</option>
+      <option>{{date.name}}</option>
+    </select>
+</div> -->
+
+
+
+
+
+
+
+

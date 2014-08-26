@@ -1,38 +1,38 @@
 angular.module('wellness.calendar', [])
 
-.controller('CalendarController', function($scope) {
-  $scope.today = function() {
-    $scope.dt = new Date();
+.controller('CalendarController', function($scope, Datepicker) {
+  $scope.dates = [
+    {name: "Sun Aug 24 2014"},
+    {name: "Mon Aug 25 2014"},
+    {name: "Tue Aug 26 2014"},
+    {name: "Wed Aug 27 2014"},
+    {name: "Thu Aug 28 2014"},
+    {name: "Fri Aug 29 2014"},
+    {name: "Sat Aug 30 2014"}
+  ];
+
+  // $scope.myDate = $scope.dates[0];
+  $scope.logDate = function() {
+    console.log($scope.myDate);
+  }
+
+  $scope.getDate = function() {
+    Datepicker.getDate($scope.selectedDate)
+  }
+})
+
+.factory('Datepicker', function($http) {
+  var getDate = function(date) {
+    return $http({
+      method: 'GET', 
+      url: 'api/dateScores'
+    })
+    .success(function(response) {
+      console.log(response);
+      return response;
+    });
   };
-  $scope.today();
-
-  $scope.clear = function () {
-    $scope.dt = null;
+  return {
+    getDate: getDate
   };
-
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    $scope.opened = true;
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
-  };
-
-  $scope.initDate = new Date('2016-15-20');
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
 });

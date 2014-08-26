@@ -5,8 +5,25 @@ var mongoose = require('mongoose');
 var SubmissionSchema = new mongoose.Schema({
   username: { type: String, required: true },
   points: { type: Number, required: true },
-  timestamp: {type: Date, default: Date.now}
+  timestamp: {type: Date, default: Date.now},
+  date: { type: String }
 });
+
+SubmissionSchema.pre('save', function(next) {
+	var submission = this;
+	var changeDate = function(callback) {
+		submission.date = submission.timestamp.toDateString();
+		callback();
+	}
+	changeDate(function(err) {
+		if (err) {
+			console.error(err);
+		}
+		console.log('submission:', submission);
+		next();
+	});
+});
+
 
 // SubmissionSchema.methods.convertDate = function(date) {
 // 	moment(date).format('YYYY-MM-DD');
