@@ -1,3 +1,4 @@
+
 mongoose.connect('mongodb://localhost/healthreactordb');
 
 var db = mongoose.connection;
