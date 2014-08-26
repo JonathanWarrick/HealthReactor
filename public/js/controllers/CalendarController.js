@@ -35,3 +35,23 @@ angular.module('wellness.calendar', [])
     getDate: getDate
   };
 });
+
+
+// On points page coming up, need to perform a get request for user logged-in.
+  // If user has already submitted point for that given day
+    // return points page with pre-populated totals
+  // Else
+    // return points page with zeroes
+// On user selecting date with date picker, new get request is sent out
+  // same logic as above PLUS within date window logic 
+  // after a week is over, can't submit points (you're too late!)
+
+// This requires a re-work of my user model
+
+
+
+
+
+
+
+
