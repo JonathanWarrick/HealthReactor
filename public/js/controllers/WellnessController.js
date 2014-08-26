@@ -9,17 +9,17 @@ angular.module('wellness', [
 	$stateProvider
 	  .state('points', {
 	  	url: "/points",
-	  	templateUrl: 'public/views/points.html',
+	  	templateUrl: '/views/points.html',
 	  	controller: "PointsController"
 	  })
 	  .state('login', {
 	  	url: "/login",
-	  	templateUrl: 'public/views/login.html',
+	  	templateUrl: '/views/login.html',
 	  	controller: "LoginController"
 	  })
 	  .state('signup', {
 	  	url: "/signup",
-	  	templateUrl: 'public/views/signup.html',
+	  	templateUrl: '/views/signup.html',
 	  	controller: "SignUpController"
 	  });
 	$urlRouterProvider.otherwise("/");

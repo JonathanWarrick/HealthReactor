@@ -1,6 +1,3 @@
-// CONFIGURE SERVER HERE
-var mongoose = require('mongoose');
-
 mongoose.connect('mongodb://localhost/healthreactordb');
 
 var db = mongoose.connection;
