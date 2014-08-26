@@ -70,6 +70,20 @@ requestHandler.createLeaderboard = function(request, response) {
 	});
 };
 
+requestHandler.getPoints = function(request, response) {
+	console.log('getPoints called');
+	var date = request.body.date;
+	Submission.find({date: date}, function(err, results) {
+		if (err) {
+			console.error(err);
+		}
+		if (results) {
+			console.log(results);
+		}
+		response.send(200, results);
+	});
+}
+
 // Create new sessions upon successful user log-in
 // requestHandler.createSession = function(request, response, user) {
 // 	console.log(request.session);

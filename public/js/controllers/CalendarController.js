@@ -17,15 +17,17 @@ angular.module('wellness.calendar', [])
   }
 
   $scope.getDate = function() {
-    Datepicker.getDate($scope.selectedDate)
+    console.log('get date called using myDate', $scope.myDate);
+    Datepicker.getDate($scope.myDate)
   }
 })
 
 .factory('Datepicker', function($http) {
   var getDate = function(date) {
     return $http({
-      method: 'GET', 
-      url: 'api/dateScores'
+      method: 'POST', 
+      url: 'api/dateScores',
+      data: date
     })
     .success(function(response) {
       console.log(response);

@@ -54,6 +54,11 @@ app.post('/api/submitPoints', function(request, response) {
 	requestHandler.submitPoints(request, response);
 });
 
+// Handle request for retrieving points from a certain day
+app.post('/api/dateScores', function(request, response) {
+	requestHandler.getPoints(request, response);
+});
+
 // Handle request to get leaderboard
 app.get('/api/leaderboard', function(request, response) {
 	requestHandler.createLeaderboard(request, response);
