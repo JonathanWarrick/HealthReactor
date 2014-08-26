@@ -1,6 +1,6 @@
 <div class="container-fluid" id="initiativeContainer">
 	<div class="row" id="initiatives" ng-repeat="initiative in wellnessInitiatives">
-		<div class="col-md-4 initiativeName">{{initiative.name}}</div>
+		<div class="col-md-4 initiativeName">{{initiative.description}}</div>
 		<div counter value="initiative.quantity" min="0" class="col-md-3 counter"></div>
 		<div class="col-md-2 initiativeTotal">{{initiative.total()}}</div>
 	</div>

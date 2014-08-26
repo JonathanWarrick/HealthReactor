@@ -2,20 +2,36 @@ angular.module('wellness.points', [])
 
 .controller('PointsController', function($scope, $http, Initiatives) {
 	$scope.wellnessInitiatives = Initiatives.wellnessInitiatives;
-	$scope.totalPoints = 0;
-	$scope.calculateTotalPoints = function() {
+  
+  $scope.waterPoints = $scope.wellnessInitiatives[0];
+  $scope.stairsPoints = $scope.wellnessInitiatives[1];
+  $scope.yogaPoints = $scope.wellnessInitiatives[2];
+  $scope.workoutPoints = $scope.wellnessInitiatives[3];
+  $scope.walkPoints = $scope.wellnessInitiatives[4];
+  $scope.meditatePoints = $scope.wellnessInitiatives[5];
+	
+  $scope.calculateTotalPoints = function() {
 		var points = 0;
 		$scope.wellnessInitiatives.forEach(function(initiative) {
-			points += initiative.total();
+      initiative.currentValue = initiative.total();
+			points += initiative.currentValue;
 		});
 		$scope.totalPoints = points;
+    var submissionInformation = {
+      username: 'testUser6',
+      waterPoints: $scope.waterPoints.currentValue,
+      stairsPoints: $scope.stairsPoints.currentValue,
+      yogaPoints: $scope.yogaPoints.currentValue,
+      workoutPoints: $scope.workoutPoints.currentValue,
+      walkPoints: $scope.walkPoints.currentValue,
+      meditatePoints: $scope.meditatePoints.currentValue,
+      totalPoints: $scope.totalPoints
+    };
+    console.log(submissionInformation)
     $http({
       method: 'POST',
       url: 'api/submitPoints',
-      data: {
-        username: 'testUser5',
-        points: $scope.totalPoints
-      }
+      data: submissionInformation
     });
 	};
 })
@@ -117,27 +133,32 @@ angular.module('wellness.points', [])
     }
 });
 
-var wellnessInitiative = function(name, pointsValue, counterType) {
+var wellnessInitiative = function(name, description, pointsValue, counterType) {
 	this.name = name;
+  this.description = description;
 	this.pointsValue = pointsValue;
 	this.counterType = counterType;
 	this.quantity = 0; 
+  this.currentValue = 0;
 };
 
 wellnessInitiative.prototype.total = function() {
-	return this.pointsValue * this.quantity;
+	this.currentValue = this.pointsValue * this.quantity;
+  return this.currentValue;
 };
 
-var waterInitiative = new wellnessInitiative("water", 2, "counter");
-var stairsInitiative = new wellnessInitiative("stairs", 2, "counter");
-var yogaInitiative = new wellnessInitiative("yoga", 15, "checkbox");
-var workoutInitiative = new wellnessInitiative("workout", 15, "checkbox");
-var walkInitiative = new wellnessInitiative("walk", 10, "checkbox");
+var waterInitiative = new wellnessInitiative("water", "Drank Some Water!", 2, "counter");
+var stairsInitiative = new wellnessInitiative("stairs", "Took Some Stairs!", 2, "counter");
+var yogaInitiative = new wellnessInitiative("yoga", "Did Some Yoga!", 15, "checkbox");
+var workoutInitiative = new wellnessInitiative("workout", "Got A Workout In!", 15, "checkbox");
+var walkInitiative = new wellnessInitiative("walk", "Walked To/From Hack Reactor!", 10, "checkbox");
+var meditateInitiative = new wellnessInitiative("meditate", "Found Inner Peace!", 10, "checkbox");
 
 var wellnessInitiativesArray = [
   waterInitiative, 
   stairsInitiative, 
   yogaInitiative, 
   workoutInitiative,
-  walkInitiative
+  walkInitiative,
+  meditateInitiative
 ];

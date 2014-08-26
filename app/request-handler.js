@@ -44,11 +44,25 @@ requestHandler.login = function(request, response) {
 requestHandler.submitPoints = function(request, response) {
 	console.log('submit points called');
 	var username = request.body.username;
-	var points = request.body.points;
+	var waterPoints = request.body.waterPoints;
+	var stairsPoints = request.body.stairsPoints;
+	var yogaPoints = request.body.yogaPoints;
+	var workoutPoints = request.body.workoutPoints;
+	var walkPoints = request.body.walkPoints;
+	var meditatePoints = request.body.meditatePoints;
+	var totalPoints = request.body.totalPoints;
+	
 	var newSubmission = new Submission({
 		username: username,
-		points: points
+		waterPoints: waterPoints,
+		stairsPoints: stairsPoints,
+		yogaPoints: yogaPoints,
+		workoutPoints: workoutPoints,
+		walkPoints: walkPoints,
+		meditatePoints: meditatePoints,
+		totalPoints: totalPoints
 	});
+	
 	newSubmission.save(function(err, submission) {
 		if (err) {
 			console.error(err);
