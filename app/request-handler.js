@@ -72,13 +72,16 @@ requestHandler.createLeaderboard = function(request, response) {
 
 requestHandler.getPoints = function(request, response) {
 	console.log('getPoints called');
-	var date = request.body.date;
-	Submission.find({date: date}, function(err, results) {
+	var date = request.body.name;
+	console.log('request.body', request.body);
+	console.log('date', date);
+
+	Submission.find({date: date, username: 'demoUser'}, function(err, results) {
 		if (err) {
 			console.error(err);
 		}
 		if (results) {
-			console.log(results);
+			console.log('here are the results', results);
 		}
 		response.send(200, results);
 	});

@@ -1,4 +1,4 @@
-<h1>Choose a Date:</h1>
+<h3>Choose a Date:</h3>
 <div>
 <select ng-model="myDate" ng-options="date.name for date in dates">
   <option>Choose Date</option>
@@ -11,6 +11,12 @@
 </br>
 
 <button type="button" class="btn btn-primary btn-lg" ng-click="getDate()">Get Your Points!</button>
+
+<ul ng-repeat="leader in leaderboard">
+	<td>{{counter}}</td>
+	<td>{{leader.username}}</td>
+	<td>{{leader.points}}</td>
+</tr>
 
 
 

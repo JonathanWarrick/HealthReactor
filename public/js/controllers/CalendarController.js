@@ -11,10 +11,7 @@ angular.module('wellness.calendar', [])
     {name: "Sat Aug 30 2014"}
   ];
 
-  // $scope.myDate = $scope.dates[0];
-  $scope.logDate = function() {
-    console.log($scope.myDate);
-  }
+  $scope.myDate = $scope.dates[0];
 
   $scope.getDate = function() {
     console.log('get date called using myDate', $scope.myDate);
@@ -30,7 +27,7 @@ angular.module('wellness.calendar', [])
       data: date
     })
     .success(function(response) {
-      console.log(response);
+      console.log('here are the results', response);
       return response;
     });
   };
