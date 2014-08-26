@@ -20,12 +20,7 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 
 // require('./app/routes')(app); // configure our routes
 
-
-app.get('/points', function(request, response) {
-	response.send('test');
-});
-
-app.get('*', function(request, response) {
+app.get('/', function(request, response) {
 	response.sendfile('./public');
 	// response.send('test');
 });
