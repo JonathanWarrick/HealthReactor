@@ -3,8 +3,10 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 
 // Require Cookie Parser and Express-Session to handle sessions
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+// var session = require('express-session');
+// var cookieParser = require('cookie-parser');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 // Require request-handler.js to execute functions upon various HTTP requests
 var requestHandler = require('./app/request-handler.js');
@@ -28,9 +30,11 @@ var port = process.env.PORT || 7432;
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-// Enable app to use sessions
-app.use(cookieParser('secret session'));
-app.use(session());
+// Enable app to use tokens
+// app.use(cookieParser('secret session'));
+// app.use(session());
+// We are going to protect /api routes with JWT
+// app.use('/api', expressJwt({secret: 'secret'}));
 
 // Set the static files location to serve initial request for page
 app.use(express.static(__dirname + '/public')); 

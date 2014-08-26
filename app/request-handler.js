@@ -1,11 +1,11 @@
 // Require modules to use with requestHandler
 var User = require('./user.js');
 var Submission = require('./initiativeSubmission.js');
-
+// var jwt = require('jsonwebtoken');
 
 // Require Cookie Parser and Express-Session to handle sessions
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+// var session = require('express-session');
+// var cookieParser = require('cookie-parser');
 
 // Create empty requestHandler object to be extended and later sent for requests
 var requestHandler = {};
@@ -32,7 +32,8 @@ requestHandler.login = function(request, response) {
 		}
 		if (user) {
 			console.log('user found');	
-			requestHandler.createSession(request, response, user);
+			// var token = jwt.sign(user, secret, {expiresInMinutes: 60 * 5});
+			// response.json({token: token});
 		} else {
 			console.log('user not found');
 			return false;
@@ -57,12 +58,12 @@ requestHandler.submitPoints = function(request, response) {
 };
 
 // Create new sessions upon successful user log-in
-requestHandler.createSession = function(request, response, user) {
-	console.log(request.session);
-	return request.session.regenerate(function() {
-		request.session.user = user;
-		console.log('successfully logged in and created session:', request.session);
-	});
-};
+// requestHandler.createSession = function(request, response, user) {
+// 	console.log(request.session);
+// 	return request.session.regenerate(function() {
+// 		request.session.user = user;
+// 		console.log('successfully logged in and created session:', request.session);
+// 	});
+// };
 
 module.exports = requestHandler;
