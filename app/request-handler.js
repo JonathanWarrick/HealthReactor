@@ -54,7 +54,7 @@ requestHandler.submitPoints = function(request, response) {
 	var totalPoints = request.body.totalPoints;
 	
 	var newSubmission = new Submission({
-		username: username,
+		username: 'fakeUser',
 		waterQuantity: waterQuantity,
 		stairsQuantity: stairsQuantity,
 		yogaQuantity: yogaQuantity,
@@ -91,7 +91,7 @@ requestHandler.getPoints = function(request, response) {
 	console.log('request.body', request.body);
 	console.log('date', date);
 
-	Submission.find({date: date, username: 'testDemoPerson'}, function(err, results) {
+	Submission.find({date: date, username: 'fakeUser'}, function(err, results) {
 		if (err) {
 			console.error(err);
 		}
