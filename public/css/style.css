@@ -1,9 +1,18 @@
+#thisisbody { 
+  background: #C6EFFF;
+}
+
+#login, #signup {
+  width: 500px;
+  margin: 0 auto;
+}
+
 #hidethis {
 	display: none;
 }
 
 #getSpecDate {
-  float: left;
+  display: inline;
 }
 
 #initiatives div, #totalRow div {

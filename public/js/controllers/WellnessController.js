@@ -3,8 +3,7 @@ angular.module('wellness', [
 	'wellness.points',
 	'wellness.login', 
 	'wellness.signup',
-	'wellness.leaderboard',
-	'wellness.calendar'
+	'wellness.leaderboard'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

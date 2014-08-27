@@ -1,6 +1,7 @@
 // Require modules to use with requestHandler
 var User = require('./user.js');
 var Submission = require('./initiativeSubmission.js');
+// var jwt  = require('jwt-simple');
 // var jwt = require('jsonwebtoken');
 
 // Require Cookie Parser and Express-Session to handle sessions
@@ -99,7 +100,7 @@ requestHandler.getPoints = function(request, response) {
 		}
 		response.send(200, results);
 	});
-}
+};
 
 // Create new sessions upon successful user log-in
 // requestHandler.createSession = function(request, response, user) {

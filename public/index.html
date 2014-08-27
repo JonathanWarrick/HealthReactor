@@ -15,11 +15,10 @@
   	<script src="../js/Controllers/LoginController.js"></script>
   	<script src="../js/Controllers/SignUpController.js"></script>
   	<script src="../js/Controllers/LeaderboardController.js"></script>
-  	<script src="../js/Controllers/CalendarController.js"></script>
   </head>
 
-  <body ng-controller="WellnessController">
-  	<div class="page-header">
+  <body ng-controller="WellnessController" id="thisisbody">
+  	<div class="page-header" id="pageTop">
   		<h1>Health Reactor</h1>
 	  		<ul class="nav nav-pills">
 	  			<li>
@@ -32,9 +31,6 @@
 	  				<a href="#/points">Points</a>
 					</li>
 					<li>
-	  				<a href="#/calendar">Calendar</a>
-					</li>
-					<li>
 	  				<a href="#/leaderboard">Leaderboard</a>
 					</li>
 					<li>
@@ -42,7 +38,7 @@
 					</li>
 				</ul>
 		</div>
-  	<div ui-view>
+  	<div id="restOfPage" ui-view>
   	</div>
   </body>
 
