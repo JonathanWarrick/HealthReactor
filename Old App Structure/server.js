@@ -24,7 +24,7 @@ mongoose.connection.once('open', function() {
 var app = express();
 
 // Determine port (production or development)
-var port = process.env.PORT || 7432;
+var port = process.env.PORT || 7111;
 
 // Configure bodyParser to take-in stringified JSON and parse automatically
 app.use(bodyParser.urlencoded());
