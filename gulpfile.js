@@ -9,6 +9,11 @@ gulp.task('lint', function() {
 	  .pipe(notify({message: 'lint task complete!'}));
 });
 
+gulp.task('watch', function() {
+	// watch all js files
+	gulp.watch('client/app/**/*.js', ['lint']);
+})
+
 gulp.task('default', function() {
 	console.log('running default gulp task.');
 });
