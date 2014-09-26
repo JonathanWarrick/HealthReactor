@@ -1,5 +1,7 @@
 angular.module('WellnessApp', [
-	'ui.router'
+	'ui.router',
+	'ngAnimate',
+	'ngMaterial'
 ])
 .config(function($urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
