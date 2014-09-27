@@ -1,5 +1,19 @@
 <div layout="vertical" layout-align="center center">
-	<material-input-group>
-		<ig fid="t1" class="material-input-group-theme-light material-input-group-inverted"></ig>
-		<ig fid="t2" class="material-input-group-theme-light-blue material-input-group-inverted"></ig>
+<!-- 	<material-input-group>
+		<ig fid="t1" info="field1" class="material-input-group-theme-light material-input-group-inverted"></ig>
+		<ig fid="t2" info="field2" class="material-input-group-theme-light material-input-group-inverted"></ig>
+	</material-input-group> -->
+  <material-toolbar class="material-theme-dark material-tall">
+    <div class="material-toolbar-tools">
+      <ig fid="t1" info="field1" class="material-input-group-theme-light material-input-group-inverted"></ig>
+      <ig fid="t2" info="field2"class="material-input-group-theme-light-blue material-input-group-inverted"></ig>
+    </div>
+  </material-toolbar>
+
 </div>
+<jw-stuff info="person1"></jw-stuff>
+<br/><br/>
+<jw-stuff info="person2"></jw-stuff>
+<br/><br/>
+Date format: <input ng-model="format"><hr/>
+Current time is: <span my-current-time="format"></span>
