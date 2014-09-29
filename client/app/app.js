@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('WellnessApp', [
 	'ui.router',
 	'ngAnimate',
@@ -5,4 +7,4 @@ angular.module('WellnessApp', [
 ])
 .config(function($urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
-})
+});
