@@ -3,6 +3,15 @@
 // require Express to handle server routing, calls, etc.
 var express = require('express');
 
+// require Mongoose to handle database querying
+var mongoose = require('mongoose');
+
+// configure database
+var configDB = require('./config/database.js');
+
+// connect to database
+mongoose.connect(configDB.url);
+
 // require Body Parser to automatically parse request body
 var bodyParser = require('body-parser');
 
@@ -19,6 +28,9 @@ app.use(bodyParser());
 
 // configure static path for index.html
 app.use(express.static(__dirname + '../../client')); // dirname is '/server' right now
+
+// feed routes to server
+// require('./routes.js')(app);
 
 // open connection to port
 app.listen(port);
