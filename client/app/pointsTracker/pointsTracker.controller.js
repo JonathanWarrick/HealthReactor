@@ -5,6 +5,7 @@ angular.module('WellnessApp')
   	$scope.counterInitiatives = Initiatives.counterInitiatives;
   	$scope.checkInitiatives = Initiatives.checkInitiatives;
   	$scope.totalPoints = 0;
+
   	$scope.calculateTotalPoints = function() {
   		$scope.totalPoints = 0;
   		$scope.counterInitiatives.forEach(function(initiative) {
@@ -14,6 +15,10 @@ angular.module('WellnessApp')
   			$scope.totalPoints += initiative.pointTotal;
   		});
   	};
+
+    $scope.submitTotalPoints = function() {
+      console.log('Need to fill in. Submitting total points:', $scope.totalPoints);
+    };
   });
   // .directive('initiative', function() {
   // 	return {

@@ -6,11 +6,11 @@
   <div flex>
     <div layout="horizontal" layout-align="center">
     	<button class="counterButton"
-				ng-click="counterInitiative.decreaseCounter(); counterInitiative.calculatecounterInitiativePoints();
+				ng-click="counterInitiative.decreaseCounter(); counterInitiative.calculateInitiativePoints();
 				calculateTotalPoints();">-</button>
 			<div class="counterInitiativeCounter">{{counterInitiative.counter}}</div>
 			<button class="counterButton"
-				ng-click="counterInitiative.increaseCounter(); counterInitiative.calculatecounterInitiativePoints();
+				ng-click="counterInitiative.increaseCounter(); counterInitiative.calculateInitiativePoints();
 				calculateTotalPoints();">+</button>	
     </div>
   </div>
@@ -31,7 +31,7 @@
 
   <div flex>
     <div layout="horizontal" layout-align="center">
-    	<input type="checkbox" ng-model="checkInitiative.isDone" ngChange="console.log('i am clicked');"></input>
+    	<input type="checkbox" ng-model="checkInitiative.isDone" ng-change="checkInitiative.calculateInitiativePoints(); calculateTotalPoints();"></input>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
 
 
 <div layout="vertical" layout-sm="horizontal">
-	<div flex></div>
+	<div flex class="total"><button ng-click="submitTotalPoints()">Submit Points!</button></div>
 	<div flex></div>
 	<div flex class="total">{{totalPoints}}</div>
 </div>
