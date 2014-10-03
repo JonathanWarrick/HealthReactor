@@ -1,5 +1,8 @@
 <div layout="vertical" layout-align="center center">
-  <input type="text" ng-model="username" placeholder="Enter Username"></input>
-  <input type="text" ng-model="password" placeholder="Enter Password"></input>
-  <button ng-click="sendUserData()">Click this button to send user data</button>
+<material-input-group>
+  <material-input type="text" ng-model="username"></material-input>
+  <material-input type="text" ng-model="password"></material-input>
+</material-input-group>
+  <button ng-click="sendUserData()">Submit!</button>
+
 </div>

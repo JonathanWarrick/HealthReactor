@@ -1,1 +1,54 @@
-<div ng-repeat="initiative in initiatives">{{initiative.name}}</div>
+<div class="counterInitiative" layout="vertical" layout-sm="horizontal" ng-repeat="counterInitiative in counterInitiatives">
+  <div flex>
+    <div class="counterInitiativeName">{{counterInitiative.name}}</div>
+  </div>
+
+  <div flex>
+    <div layout="horizontal" layout-align="center">
+    	<button class="counterButton"
+				ng-click="counterInitiative.decreaseCounter(); counterInitiative.calculatecounterInitiativePoints();
+				calculateTotalPoints();">-</button>
+			<div class="counterInitiativeCounter">{{counterInitiative.counter}}</div>
+			<button class="counterButton"
+				ng-click="counterInitiative.increaseCounter(); counterInitiative.calculatecounterInitiativePoints();
+				calculateTotalPoints();">+</button>	
+    </div>
+  </div>
+
+  <div flex>
+    <div class="counterInitiativeTotal">{{counterInitiative.pointTotal}}</div>
+  </div>
+</div>
+
+
+
+
+
+<div class="checkInitiative" layout="vertical" layout-sm="horizontal" ng-repeat="checkInitiative in checkInitiatives">
+  <div flex>
+    <div class="checkInitiativeName">{{checkInitiative.name}}</div>
+  </div>
+
+  <div flex>
+    <div layout="horizontal" layout-align="center">
+    	<input type="checkbox" ng-model="checkInitiative.isDone" ngChange="console.log('i am clicked');"></input>
+    </div>
+  </div>
+
+  <div flex>
+    <div class="checkInitiativeTotal">{{checkInitiative.pointTotal}}</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div layout="vertical" layout-sm="horizontal">
+	<div flex></div>
+	<div flex></div>
+	<div flex class="total">{{totalPoints}}</div>
+</div>

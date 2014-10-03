@@ -2,13 +2,17 @@
 
 angular.module('WellnessApp')
   .factory('Initiatives', function() {
-  	var initiatives = [
-  		yogaInitiative,
-  		waterInitiative
+  	var counterInitiatives = [
+  		waterInitiative,
+  		stairsInitiative
   	];
+  	var checkInitiatives = [
+  		yogaInitiative
+  	]
 
   	return {
-  		initiatives: initiatives
+  		counterInitiatives: counterInitiatives,
+  		checkInitiatives: checkInitiatives
   	};
   });
 
@@ -18,6 +22,7 @@ angular.module('WellnessApp')
 var CheckInitiative = function(name, pointValue) {
 	this.name = name;
 	this.pointValue = pointValue;
+	this.pointTotal = 0;
 	this.isDone = false;
 };
 
@@ -25,9 +30,18 @@ CheckInitiative.prototype.toggleStatus = function() {
 	this.isDone = !this.isDone;
 };
 
+CheckInitiative.prototype.calculateInitiativePoints = function() {
+	if (this.isDone) {
+		this.pointTotal = pointValue;
+	} else {
+		this.pointTotal = 0;
+	}
+};
+
 var CounterInitiative = function(name, pointValue) {
 	this.name = name;
 	this.pointValue = pointValue;
+	this.pointTotal = 0;
 	this.counter = 0;
 };
 
@@ -39,5 +53,10 @@ CounterInitiative.prototype.decreaseCounter = function() {
 	this.counter--;
 };
 
+CounterInitiative.prototype.calculateInitiativePoints = function() {
+	this.pointTotal = this.pointValue * this.counter;
+};
+
 var yogaInitiative = new CheckInitiative('Yoga', 15);
 var waterInitiative = new CounterInitiative('Water', 2);
+var stairsInitiative = new CounterInitiative('Stairs', 2);

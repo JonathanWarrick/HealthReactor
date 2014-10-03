@@ -1,0 +1,11 @@
+.counterInitiative, .checkInitiative, .total {
+	text-align: center;
+	border: black 2px solid;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 20px;
+}
+
+.counterInitiativeCounter {
+	width: 50px;
+}
