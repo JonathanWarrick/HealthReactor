@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 // configure database
 var configDB = require('./config/database.js');
+var user = require('./api/user/user.controller.js');
 
 // connect to database
 mongoose.connect(configDB.url);
@@ -32,8 +33,20 @@ app.use(express.static(__dirname + '../../client')); // dirname is '/server' rig
 // feed routes to server
 // require('./routes.js')(app);
 
+app.post('/api/submitPoints', user.updatePointsTotal);
+
 // open connection to port
 app.listen(port);
 console.log('Server running on port %d', port);
 
 exports = module.exports = app;
+
+var test = function() {
+	console.log('user created');
+	var date = new Date();
+	user.createNewUser({
+		username: 'testUser2', 
+		password: 'testPassword', 
+		pointsSubmissions: {date: {array: []}}
+	});
+}();

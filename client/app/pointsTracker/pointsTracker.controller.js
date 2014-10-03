@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('WellnessApp')
-  .controller('PointsTrackerController', function($scope, Initiatives) {
+  .controller('PointsTrackerController', function($scope, Initiatives, $http) {
   	$scope.counterInitiatives = Initiatives.counterInitiatives;
   	$scope.checkInitiatives = Initiatives.checkInitiatives;
   	$scope.totalPoints = 0;
+    var initiativePointsArray = [];
 
   	$scope.calculateTotalPoints = function() {
   		$scope.totalPoints = 0;
@@ -18,6 +19,22 @@ angular.module('WellnessApp')
 
     $scope.submitTotalPoints = function() {
       console.log('Need to fill in. Submitting total points:', $scope.totalPoints);
+      
+      $scope.counterInitiatives.forEach(function(initiative) {
+        initiativePointsArray.push(initiative.pointTotal);
+      });
+      $scope.checkInitiatives.forEach(function(initiative) {
+        initiativePointsArray.push(initiative.pointTotal);
+      });
+
+      $http.post('/api/submitPoints', {
+        username: 'testUser',
+        initiativeArray: initiativePointsArray
+      }).success(function(response) {
+        console.log('response received, yay.');
+      }).error(function(response) {
+        console.error('shit, I failed.');
+      });
     };
   });
   // .directive('initiative', function() {

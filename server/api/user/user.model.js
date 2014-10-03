@@ -1,35 +1,36 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var Schema = mongoose.schema;
+var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var UserSchema = new Schema({
 	username: String,
 	password: String,
-	pointsSubmissions: {
-		date: {
-			waterInitiative: Number,
-			stairsInitiative: Number,
-			yogaInitiative: Number,
-			workoutInitiative: Number,
-			meditationInitiative: Number,
-			walkingInitiative: Number
-		}
-	}
+  pointsSubmissions: Schema.Types.Mixed
+	// pointsSubmissions: {
+	// 	date: {
+	// 		waterInitiative: Number,
+	// 		stairsInitiative: Number,
+	// 		yogaInitiative: Number,
+	// 		workoutInitiative: Number,
+	// 		meditationInitiative: Number,
+	// 		walkingInitiative: Number
+	// 	}
+	// }
 });
 
 /**
  * Pre-save hook
  */
-UserSchema
-  .pre('save', function(next) {
-    if (!this.isNew) return next();
+// UserSchema
+//   .pre('save', function(next) {
+//     if (!this.isNew) return next();
 
-    if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
-      next(new Error('Invalid password'));
-    else
-      next();
-  });
+//     if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
+//       next(new Error('Invalid password'));
+//     else
+//       next();
+//   });
 
 /**
  * Methods
