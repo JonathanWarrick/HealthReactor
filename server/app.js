@@ -45,8 +45,7 @@ var test = function() {
 	console.log('user created');
 	var date = new Date();
 	user.createNewUser({
-		username: 'testUser2', 
-		password: 'testPassword', 
-		pointsSubmissions: {date: {array: []}}
+		username: 'testUser', 
+		password: 'testPassword'
 	});
 }();

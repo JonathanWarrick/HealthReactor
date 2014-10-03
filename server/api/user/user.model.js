@@ -3,20 +3,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var pointsSubmissionSchema = new Schema();
+
 var UserSchema = new Schema({
 	username: String,
 	password: String,
-  pointsSubmissions: Schema.Types.Mixed
-	// pointsSubmissions: {
-	// 	date: {
-	// 		waterInitiative: Number,
-	// 		stairsInitiative: Number,
-	// 		yogaInitiative: Number,
-	// 		workoutInitiative: Number,
-	// 		meditationInitiative: Number,
-	// 		walkingInitiative: Number
-	// 	}
-	// }
+	pointsSubmissions: [{
+    date: Date,
+    waterInitiative: String,
+    stairsInitiative: String,
+    yogaInitiative: String,
+    workoutInitiative: String,
+    meditationInitiative: String,
+    walkingInitiative: String  
+  }] 
 });
 
 /**
