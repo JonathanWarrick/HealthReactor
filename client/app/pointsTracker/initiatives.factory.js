@@ -9,7 +9,8 @@ angular.module('WellnessApp')
   	var checkInitiatives = [
   		yogaInitiative,
   		workoutInitiative,
-  		meditationInitiative
+  		meditationInitiative,
+  		walkingInitiative
   	];
 
   	return {
@@ -62,5 +63,6 @@ CounterInitiative.prototype.calculateInitiativePoints = function() {
 var yogaInitiative = new CheckInitiative('Yoga', 15);
 var workoutInitiative = new CheckInitiative('Workout', 10);
 var meditationInitiative = new CheckInitiative('Meditation', 10);
+var walkingInitiative = new CheckInitiative('Walked to Hack Reactor', 10);
 var waterInitiative = new CounterInitiative('Water', 2);
 var stairsInitiative = new CounterInitiative('Stairs', 2);
