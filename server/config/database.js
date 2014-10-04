@@ -2,14 +2,13 @@ var Bookshelf = require('bookshelf');
 var path = require('path');
 
 var db = Bookshelf.initialize({
-  client: 'sqlite3',
+  client: 'mysql',
   connection: {
     host: '127.0.0.1',
-    user: 'your_database_user',
+    user: 'root',
     password: 'password',
-    database: 'healthreactordb-dev',
-    charset: 'utf8',
-    filename: path.join(__dirname, '../db/healthreactordb-dev.sqlite')
+    database: 'healthreactordbdev',
+    charset: 'utf8'
   }
 });
 
@@ -28,16 +27,16 @@ db.knex.schema.hasTable('users').then(function(exists) {
 
 db.knex.schema.hasTable('activities').then(function(exists) {
 	if (!exists) {
-		db.knex.schema.createTable('activities', function(pointsSubmission) {
-			activities.increments('id').primary();
-			activities.string('username', 100);
-			activities.date('submissionDate');
-			activities.integer('waterPoints');
-			activities.integer('stairsPoints');
-			activities.integer('yogaPoints');
-			activities.integer('workoutPoints');
-			activities.integer('meditationPoints');
-			activities.integer('walkingPoints');
+		db.knex.schema.createTable('activities', function(activity) {
+			activity.increments('id').primary();
+			activity.string('username', 100);
+			activity.date('submissionDate');
+			activity.integer('waterPoints');
+			activity.integer('stairsPoints');
+			activity.integer('yogaPoints');
+			activity.integer('workoutPoints');
+			activity.integer('meditationPoints');
+			activity.integer('walkingPoints');
 		}).then(function (table) {
 			console.log('Created Table', table);
 		});

@@ -4,14 +4,14 @@
 var express = require('express');
 
 // require Mongoose to handle database querying
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 
 // configure database
 var configDB = require('./config/database.js');
-var user = require('./api/user/user.controller.js');
+var helpers = require('./config/request-handlers.js');
 
 // connect to database
-mongoose.connect(configDB.url);
+// mongoose.connect(configDB.url);
 
 // require Body Parser to automatically parse request body
 var bodyParser = require('body-parser');
@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '../../client')); // dirname is '/server' rig
 // feed routes to server
 // require('./routes.js')(app);
 
-app.post('/api/submitPoints', user.updatePointsTotal);
+app.post('/api/submitPoints', helpers.submitPoints);
 
 // open connection to port
 app.listen(port);
@@ -42,10 +42,11 @@ console.log('Server running on port %d', port);
 exports = module.exports = app;
 
 var test = function() {
-	console.log('user created');
-	var date = new Date();
-	user.createNewUser({
+	helpers.signupUser({
 		username: 'testUser', 
 		password: 'testPassword'
 	});
 }();
+
+// using SQLite3
+// sqlite // to start off database

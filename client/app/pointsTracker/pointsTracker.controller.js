@@ -19,6 +19,8 @@ angular.module('WellnessApp')
 
     $scope.submitTotalPoints = function() {
       console.log('Need to fill in. Submitting total points:', $scope.totalPoints);
+
+      initiativePointsArray = [];
       
       $scope.counterInitiatives.forEach(function(initiative) {
         initiativePointsArray.push(initiative.pointTotal);
