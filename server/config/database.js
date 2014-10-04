@@ -30,13 +30,14 @@ db.knex.schema.hasTable('activities').then(function(exists) {
 		db.knex.schema.createTable('activities', function(activity) {
 			activity.increments('id').primary();
 			activity.string('username', 100);
-			activity.date('submissionDate');
+			activity.string('submissionDate');
 			activity.integer('waterPoints');
 			activity.integer('stairsPoints');
 			activity.integer('yogaPoints');
 			activity.integer('workoutPoints');
 			activity.integer('meditationPoints');
 			activity.integer('walkingPoints');
+      activity.timestamps();
 		}).then(function (table) {
 			console.log('Created Table', table);
 		});

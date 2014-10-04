@@ -1,6 +1,7 @@
 // var request = require('request');
 var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
+var moment = require('moment');
 
 var db = require('./database.js');
 var User = require('../api/user/user.model.js');
@@ -59,28 +60,33 @@ exports.signupUser = function(request, response) {
 exports.submitPoints = function(request, response) {
 	console.log(request.body);
 	var username = request.body.username;
-	var date = new Date();
 	var activities = request.body.initiativeArray;
+
+	var day = new Date();
+	var dayWrapper = moment(day); 
+	var dayString = dayWrapper.format("YYYY MMM D"); 
+	console.log(dayString);
 
 	new ActivitySubmission({
 		username: username,
-		submissionDate: date,
-		waterPoints: activities[0],
-		stairsPoints: activities[1],
-		yogaPoints: activities[2],
-		workoutPoints: activities[3],
-		meditationPoints: activities[4],
-		walkingPoints: activities[5]
+		submissionDate: dayString,
 	})
 	.fetch()
 	.then(function(activitySubmission) {
 		if (activitySubmission) {
-			console.log('Updating current points for this day and user.');
-			// add logic here
+			console.log('Updating current points for this day and user.', activitySubmission);
+			activitySubmission.save({
+				waterPoints: activities[0],
+				stairsPoints: activities[1],
+				yogaPoints: activities[2],
+				workoutPoints: activities[3],
+				meditationPoints: activities[4],
+				walkingPoints: activities[5]			
+			}, {patch: true});
 		} else {
 			var newActivitySubmission = new ActivitySubmission({
 				username: username,
-				submissionDate: date,
+				submissionDate: dayString,
 				waterPoints: activities[0],
 				stairsPoints: activities[1],
 				yogaPoints: activities[2],
