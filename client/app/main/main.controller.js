@@ -1,11 +1,26 @@
 'use strict';
 
 angular.module('WellnessApp')
-  .controller('MainController', function($scope) {
-    $scope.test = 'This is a test!';
-    $scope.sendUserData = function() {
-      console.log('user is', $scope.username);
-      console.log('password is', $scope.password);
+  .controller('MainController', function($scope, $http) {
+    $scope.userLogin = function() {
+      $http.post('api/auth/login', {
+        username: $scope.username,
+        password: $scope.password
+      }).success(function(data) {
+        console.log('user successfully logged in', data);
+      }).error(function(err) {
+        console.error('error', err);
+      });
+    };
+    $scope.userSignup = function() {
+      $http.post('api/auth/signup', {
+        username: $scope.username,
+        password: $scope.password
+      }).success(function(data) {
+        console.log('user successfully logged in', data);
+      }).error(function(err) {
+        console.error('error', err);
+      });
     };
   });
   // .directive('ngTest', function() {

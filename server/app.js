@@ -34,6 +34,8 @@ app.use(express.static(__dirname + '../../client')); // dirname is '/server' rig
 // require('./routes.js')(app);
 
 app.post('/api/submitPoints', helpers.submitPoints);
+app.post('/api/auth/login', helpers.loginUser);
+app.post('/api/auth/signup', helpers.signupUser);
 
 // open connection to port
 app.listen(port);
@@ -41,12 +43,15 @@ console.log('Server running on port %d', port);
 
 exports = module.exports = app;
 
-var test = function() {
-	helpers.signupUser({
-		username: 'testUser', 
-		password: 'testPassword'
-	});
-}();
+// var test = function() {
+// 	helpers.signupUser({
+// 		username: 'testUser', 
+// 		password: 'testPassword'
+// 	});
+// }();
 
-// using SQLite3
-// sqlite // to start off database
+// using MySQL
+// mysql.server stop (stop existing running instances)
+// mysql.server start
+// mysql -u root -p
+// use healthreactordbdev;

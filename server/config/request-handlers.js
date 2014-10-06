@@ -10,28 +10,37 @@ var Users = require('../api/user/user.collection.js');
 var ActivitySubmissions = require('../api/activities/activities.collection.js');
 
 exports.loginUser = function(request, response) {
+	console.log('request:', request.body);
 	var username = request.body.username;
 	var password = request.body.password;
 
 	new User({
-		username: username,
-		password: password
+		username: username
 	})
 	.fetch()
-	.then(function(found) {
-		if (found) {
-			// create session
-			response.send(200);
+	.then(function(user) {
+		console.log('user after fetch is', user);
+		if (!user) {
+			console.log('This user was not found:', user);
+			response.send(404);
 		} else {
-			console.log('This user was not found:', found.username);
+			user.comparePassword(password, function(match) {
+				if (match) {
+					// create session
+					// response.send(200, found);
+				} else {
+					console.log('This user was not found:', user);
+					response.send(404);
+				}
+			});
 		}
 	});
 };
 
 exports.signupUser = function(request, response) {
 	console.log(request);
-	var username = request.username;
-	var password = request.password;
+	var username = request.body.username;
+	var password = request.body.password;
 
 	new User({
 		username: username,
@@ -41,7 +50,7 @@ exports.signupUser = function(request, response) {
 	.then(function(user) {
 		if(user) {
 			console.log('This user already exists:', user);
-			response.send(400);
+			response.send(404);
 		} else {
 			var newUser = new User({
 				username: username,
@@ -52,6 +61,7 @@ exports.signupUser = function(request, response) {
 				Users.add(newUser);
 				// need to add session functionality here
 				console.log('This user was successfully created and saved:', user);
+				response.send(200, user);
 			});
 		}
 	});
