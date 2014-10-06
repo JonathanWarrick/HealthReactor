@@ -20,6 +20,7 @@
     "express-jwt": "^0.4.0",
     "express-session": "^1.8.2",
     "jsonwebtoken": "^1.1.2",
+    "jwt-simple": "^0.2.0",
     "knex": "^0.7.3",
     "moment": "^2.8.3",
     "mongoose": "^3.8.17",
@@ -27,6 +28,7 @@
     "nodemon": "^1.2.1",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
+    "q": "^1.0.1",
     "request": "^2.44.0"
   },
   "devDependencies": {

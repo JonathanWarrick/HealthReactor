@@ -27,6 +27,9 @@ var port = process.env.PORT || 7777;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser());
 
+// app.use(helpers.errorLogger);
+// app.use(helpers.errorHandler);
+
 // configure static path for index.html
 app.use(express.static(__dirname + '../../client')); // dirname is '/server' right now
 
