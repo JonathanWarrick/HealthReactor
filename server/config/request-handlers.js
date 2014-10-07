@@ -96,6 +96,7 @@ exports.checkAuth = function (request, response, next) {
 };
 
 exports.getLeaders = function(request, response, next) {
+	console.log('in get leaders');
 	var day = new Date();
 	var dayWrapper = moment(day); 
 	var dayString = dayWrapper.format("YYYY MMM D");
@@ -103,7 +104,7 @@ exports.getLeaders = function(request, response, next) {
 	new ActivitySubmission({
 		submissionDate: dayString
 	})
-	.fetch()
+	.fetchAll()
 	.then(function(activitySubmission) {
 		if(activitySubmission) {
 			console.log('found all submissions for this day', dayString);
