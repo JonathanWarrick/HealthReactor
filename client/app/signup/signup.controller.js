@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('WellnessApp')
-  .controller('SignupController', function($scope, $http, $state) {
+  .controller('SignupController', function($scope, $http, $state, $window, Auth) {
     $scope.userSignup = function() {
-      $http.post('api/auth/signup', {
+      Auth.signup({
         username: $scope.username,
         password: $scope.password
-      }).success(function(data) {
-        console.log('user successfully logged in', data);
+      })
+      .then(function (token) {
+        $window.localStorage.setItem('healthreactor', token);
         $state.go('pointsTracker');
-      }).error(function(err) {
-        console.error('error', err);
+      })
+      .catch(function (error) {
+        console.error(error);
       });
     };
   });

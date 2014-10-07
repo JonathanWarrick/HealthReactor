@@ -6,6 +6,6 @@ angular.module('WellnessApp')
 	  	.state('signup', {
 	  		url: '/signup',
 	  		templateUrl: 'app/signup/signup.html',
-	  		controller: 'SignupController'
+	  		controller: 'AuthController'
 	  	});
   });

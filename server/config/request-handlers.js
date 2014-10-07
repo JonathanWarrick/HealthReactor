@@ -1,4 +1,4 @@
-// var request = require('request');
+var request = require('request');
 var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
 var moment = require('moment');
@@ -18,6 +18,7 @@ exports.loginUser = function(request, response) {
 
 	new User({
 		username: username
+		// password: password
 	})
 	.fetch()
 	.then(function(user) {
@@ -78,66 +79,75 @@ exports.checkAuth = function (request, response, next) {
   if (!token) {
     next(new Error('No token'));
   } else {
-    var user = exports.decode(token, 'secret');
+    var user = jwt.decode(token, 'secret');
     var findUser = Q.nbind(User.findOne, User);
     findUser({username: user.username})
       .then(function (foundUser) {
         if (foundUser) {
-          res.send(200);
+          response.send(200);
         } else {
-          res.send(401);
+          response.send(401);
         }
       })
       .fail(function (error) {
         next(error);
       });
   }
- };
+};
 
-exports.submitPoints = function(request, response) {
-	console.log(request.body);
-	var username = request.body.username;
-	var activities = request.body.initiativeArray;
+exports.submitPoints = function(request, response, next) {
+	var token = request.headers['x-access-token'];
+	console.log('request for header check is', request.headers);
+	console.log('token is???', token);
+  if (!token) {
+    next(new Error('No token'));
+  } else {
+    var user = jwt.decode(token, 'secret');
+    console.log('username after decode is', user);
+		var activities = request.body.initiativeArray;
 
-	var day = new Date();
-	var dayWrapper = moment(day); 
-	var dayString = dayWrapper.format("YYYY MMM D"); 
-	console.log(dayString);
+		var day = new Date();
+		var dayWrapper = moment(day); 
+		var dayString = dayWrapper.format("YYYY MMM D"); 
+		console.log(dayString);
 
-	new ActivitySubmission({
-		username: username,
-		submissionDate: dayString,
-	})
-	.fetch()
-	.then(function(activitySubmission) {
-		if (activitySubmission) {
-			console.log('Updating current points for this day and user.', activitySubmission);
-			activitySubmission.save({
-				waterPoints: activities[0],
-				stairsPoints: activities[1],
-				yogaPoints: activities[2],
-				workoutPoints: activities[3],
-				meditationPoints: activities[4],
-				walkingPoints: activities[5]			
-			}, {patch: true});
-		} else {
-			var newActivitySubmission = new ActivitySubmission({
-				username: username,
-				submissionDate: dayString,
-				waterPoints: activities[0],
-				stairsPoints: activities[1],
-				yogaPoints: activities[2],
-				workoutPoints: activities[3],
-				meditationPoints: activities[4],
-				walkingPoints: activities[5]
-			});
-			newActivitySubmission.save()
-			.then(function(newActivitySubmission) {
-				ActivitySubmissions.add(newActivitySubmission);
-				console.log('Activity submission added', newActivitySubmission)
-			});
-		}
-	});
+		new ActivitySubmission({
+			username: user.username,
+			submissionDate: dayString,
+		})
+		.fetch()
+		.then(function(activitySubmission) {
+			if (activitySubmission) {
+				console.log('Updating current points for this day and user.', activitySubmission);
+				activitySubmission.save({
+					waterPoints: activities[0],
+					stairsPoints: activities[1],
+					yogaPoints: activities[2],
+					workoutPoints: activities[3],
+					meditationPoints: activities[4],
+					walkingPoints: activities[5]			
+				}, {patch: true});
+				response.send(200, activitySubmission);
+			} else {
+				var newActivitySubmission = new ActivitySubmission({
+					username: user.username,
+					submissionDate: dayString,
+					waterPoints: activities[0],
+					stairsPoints: activities[1],
+					yogaPoints: activities[2],
+					workoutPoints: activities[3],
+					meditationPoints: activities[4],
+					walkingPoints: activities[5]
+				});
+				newActivitySubmission.save()
+				.then(function(newActivitySubmission) {
+					ActivitySubmissions.add(newActivitySubmission);
+					console.log('Activity submission added', newActivitySubmission);
+					response.send(200, activitySubmission);
+				});
+			}
+		});
+	}
 };
 
 var errorLogger = function (error, request, response, next) {

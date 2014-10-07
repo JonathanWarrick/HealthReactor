@@ -39,6 +39,7 @@ app.use(express.static(__dirname + '../../client')); // dirname is '/server' rig
 app.post('/api/submitPoints', helpers.submitPoints);
 app.post('/api/auth/login', helpers.loginUser);
 app.post('/api/auth/signup', helpers.signupUser);
+app.get('/api/auth/signout', helpers.checkAuth)
 
 // open connection to port
 app.listen(port);
