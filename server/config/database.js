@@ -37,6 +37,7 @@ db.knex.schema.hasTable('activities').then(function(exists) {
 			activity.integer('workoutPoints');
 			activity.integer('meditationPoints');
 			activity.integer('walkingPoints');
+      activity.integer('totalPoints');
       activity.timestamps();
 		}).then(function (table) {
 			console.log('Created Table', table);

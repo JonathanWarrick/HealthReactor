@@ -95,6 +95,25 @@ exports.checkAuth = function (request, response, next) {
   }
 };
 
+exports.getLeaders = function(request, response, next) {
+	var day = new Date();
+	var dayWrapper = moment(day); 
+	var dayString = dayWrapper.format("YYYY MMM D");
+
+	new ActivitySubmission({
+		submissionDate: dayString
+	})
+	.fetch()
+	.then(function(activitySubmission) {
+		if(activitySubmission) {
+			console.log('found all submissions for this day', dayString);
+			response.send(200, activitySubmission);
+		} else {
+			next(new Error('No activity today'));
+		}
+	});
+};
+
 exports.submitPoints = function(request, response, next) {
 	var token = request.headers['x-access-token'];
 	console.log('request for header check is', request.headers);
@@ -125,7 +144,8 @@ exports.submitPoints = function(request, response, next) {
 					yogaPoints: activities[2],
 					workoutPoints: activities[3],
 					meditationPoints: activities[4],
-					walkingPoints: activities[5]			
+					walkingPoints: activities[5],
+					totalPoints: activities[6]			
 				}, {patch: true});
 				response.send(200, activitySubmission);
 			} else {
@@ -137,7 +157,8 @@ exports.submitPoints = function(request, response, next) {
 					yogaPoints: activities[2],
 					workoutPoints: activities[3],
 					meditationPoints: activities[4],
-					walkingPoints: activities[5]
+					walkingPoints: activities[5],
+					totalPoints: activities[6]
 				});
 				newActivitySubmission.save()
 				.then(function(newActivitySubmission) {

@@ -28,6 +28,7 @@ angular.module('WellnessApp')
       $scope.checkInitiatives.forEach(function(initiative) {
         initiativePointsArray.push(initiative.pointTotal);
       });
+      initiativePointsArray.push($scope.totalPoints);
 
       $http.post('/api/submitPoints', {
         username: 'testUser',
