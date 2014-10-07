@@ -5,6 +5,18 @@ angular.module('WellnessApp', [
 	'ngAnimate',
 	'ngMaterial'
 ])
+.controller('WellnessController', function($scope, $state) {
+  $scope.clickLogin = function() {
+    console.log('hey?');
+    $state.go('login');
+  };
+  $scope.clickPointsTracker = function() {
+    $state.go('pointsTracker');
+  };
+  $scope.clickLeaderboard = function() {
+    $state.go('leaderboard');
+  };
+})
 .config(function($urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise('/');
   $httpProvider.interceptors.push('AttatchTokens');

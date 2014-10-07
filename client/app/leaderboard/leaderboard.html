@@ -1,9 +1,9 @@
-<div class="leader" layout="vertical" layout-sm="horizontal" ng-repeat="leader in leaders">
+<div class="leader" layout="vertical" layout-sm="horizontal" ng-repeat="leader in leaders | orderBy: '-totalPoints'">
   <div flex>
-    <div class="leaderName">{{leader.username}}</div>
+    <div ng-if="$index < 5" class="leaderName">{{leader.username}}</div>
   </div>
 
   <div flex>
-    <div class="leaderTotal">{{leader.totalPoints}}</div>
+    <div ng-if="$index < 5" class="leaderTotal">{{leader.totalPoints}}</div>
   </div>
 </div>

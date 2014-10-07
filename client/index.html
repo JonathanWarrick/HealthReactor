@@ -18,6 +18,11 @@
     <div layout="horizontal" layout-align="center">
       <h1>Health Reactor</h1>
     </div>
+    <material-tabs selected="data.selectedIndex" center>
+      <material-tab label="Log-In" ui-sref="login"></material-tab>
+      <material-tab label="Submit Points" ui-sref="pointsTracker"></material-tab>
+      <material-tab label="Leaderboard" ui-sref="leaderboard"></material-tab>
+    </material-tabs>
     <div ui-view></div>
 
 
